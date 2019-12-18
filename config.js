@@ -1,10 +1,9 @@
 const config = {
-    //"token":  "NjEwMDc0NTQyMjE5NzIyNzY2.XVPrag.e4XzmDoc8awYmnYT3CM05ZXgAfc",
     "prefix": "?",
-    "token": "NTk3Nzk0MjgxODY3OTY4NTQy.XVUHoA.ANhDdEdzo0ZsDQE4qArvwNuC6xw",
-    "owner": "414764511489294347",
-    "admins": ["235660286718246912", "295978095129657355", "542058542853521461", "329655289966231552"],
-    "dbUrl": "mongodb://bot:bot-11@ds249137.mlab.com:49137/forumer-united",
+    "token": "TOKEN",
+    "owner": "",
+    "admins": [],
+    "dbUrl": "mongodb://",
 
     permLevels: [
       { level: 0,
@@ -61,7 +60,7 @@ const config = {
 
       { level: 10,
         name: "Bot Owner",
-        check: (message) => "414764511489294347" === message.author.id
+        check: (message) => config.owner === message.author.id
       }
     ]
   };
