@@ -63,7 +63,16 @@ class Help extends Command {
          .setColor("#2A7AAF")
          .setDescription(`${cmds.join("\n")}`);
         reply(emb);
-     } else {
+     } else if (args[0].toLowerCase() === "music") {
+      var cmds = this.client.commands.filter(c => c.help.category === "Music" && c.conf.enabled === true);
+      cmds = cmds.map(cmd => `**${cmd.help.name.toProperCase()} - \`+${cmd.help.name}\`**\n${cmd.help.description}`)
+
+      const emb = new Discord.MessageEmbed()
+        .setAuthor(message.author.tag, message.author.displayAvatarURL())
+        .setColor("#2A7AAF")
+        .setDescription(`${cmds.join("\n")}`);
+       reply(emb);
+    } else {
        const command = this.client.commands.get(args[0].toLowerCase());
        if (!command) return reply(`Command/Category/Alias not found.`);
        var enab = command.conf.enabled ? "Yes" : "No";
