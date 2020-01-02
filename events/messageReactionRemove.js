@@ -6,34 +6,10 @@ module.exports = class {
   }
 
   async run(reaction, user) {
-    if (reaction.message.id === "610180716621201408") {
-      const member = reaction.message.guild.members.get(user.id);
-      if (reaction.emoji.name === "🌽") {
-        member.roles.remove("608713051000143890");
-        member.user.send("Removed farmer role.");
-      }
-      if (reaction.emoji.name === "🔨") {
-        member.roles.remove("608712841301590065");
-        member.user.send("Removed builder role.");
-      }
-      if (reaction.emoji.name === "🏥") {
-        member.roles.remove("608712892673425409");
-        member.user.send("Removed surgeon role.");
-      }
-      if (reaction.emoji.name === "💎") {
-        member.roles.remove("532185124649828362");
-        member.user.send("Removed BFG role.");
-      }
-      if (reaction.emoji.name === "🗞") {
-        member.roles.remove("610202262827958272");
-        member.user.send("Removed Growtopia Updates role.");
-      }
-    }
-
     const message = reaction.message;
     if (message.author.id === user.id) return;
     if (reaction.emoji.name !== "⭐") return;
-    const starboardChannel = "598903393360019466";
+    const starboardChannel = "632960715359125535";
     const starChannel = message.guild.channels.find(channel => channel.id == starboardChannel)
     if (!starChannel) return message.channel.send(`It appears that you do not have a \`${starboardChannel}\` channel.`);
     const fetchedMessages = await starChannel.messages.fetch({ limit: 100 });

@@ -1,18 +1,12 @@
 const Discord = require("discord.js");
 const cooldowns = new Discord.Collection();
 const fs = require("fs");
-const dbUrl = require("../config.js").dbUrl;
 let coinCooldown = new Set();
 let xpCooldown = new Set();
-const mongoose = require("mongoose");
 const Money = require("../models/money.js");
 const Levels = require("../models/levels.js");
 const translate = require("yandex-translate")("trnsl.1.1.20190710T105915Z.739ffbca253e3738.8ee02f6d63607656571d32a7f1a986aab797091c");
 const bannedChannels = ["597789932685361165", "598492465401561099", "532362774458925056", "532362593319518228", "532472116583333888", "605059019668979742", "592672349653041153", "610148658343575552"];
-
-mongoose.connect(dbUrl, {
-    useNewUrlParser: true
-});
 
 module.exports = class {
   constructor (client) {
@@ -35,24 +29,38 @@ module.exports = class {
       message.channel.send("oof");
     }
 
-    if (message.content.length > 0 && !message.content.includes("augu")) {
-      translate.detect(message.content, async (err, res) => {
-   	if (res.lang !== "en" && res.lang.length > 0) {
-      await message.react("ℹ");
-      const collected = await message.awaitReactions((reaction, user) => user.id !== "597794281867968542", {max: 1, time: 60000, errors: ["time"] });
-      const res5 = collected.first().emoji.name;
-      if (res5 === "ℹ") {
-          translate.translate(message.content, { to: "en" }, function(err1, res1) {
-            const translateEmbed = new Discord.MessageEmbed()
-              .setDescription(`Original message by ${message.author}.\`\`\`${res1.text}\`\`\`Translated from **${res.lang.toUpperCase()}**.`)
-              .setColor("BLUE")
-              .setFooter("Powered by Yandex-Translate")
-              .setTimestamp();
-            message.channel.send(translateEmbed);
-          });
-        }
-        }
-      });
+    try {
+      if (message.content.length > 0 && !message.content.includes("augu")) {
+        translate.detect(message.content, async (err, res) => {
+        if (res.lang !== "en" && res.lang.length > 0) {
+        message.react("643893125022220308").then(async () => {
+        const collected = await message.awaitReactions((reaction, user) => user.id !== "597794281867968542", {max: 1, time: 60000, errors: ["time"] });
+        const res5 = collected.first().emoji.id;
+        if (res5 === "643893125022220308") {
+            translate.translate(message.content, { to: "en" }, async (err1, res1) => {
+              const translateEmbed = new Discord.MessageEmbed()
+                .setDescription(`Original message by ${message.author}.\`\`\`${res1.text[0]}\`\`\`Translated from **${res.lang.toUpperCase()}**.`)
+                .setColor("BLUE")
+                .setFooter("Powered by Yandex-Translate")
+                .setTimestamp();
+              const mj = await message.channel.send(translateEmbed);
+
+              setTimeout(() => {
+                try {
+                  mj.delete();
+                  message.reaction.map(r => r.remove());
+                } catch (e) {
+                  // Hi
+                }
+              }, (res1.text[0].length * 600));
+            });
+          }
+        });
+          }
+        });
+      }
+    } catch (e) {
+      // Hi Again
     }
     if (message.author.bot) return;
     if (message.content.includes("mraugu")) await message.react("597417024704086016");
@@ -124,7 +132,7 @@ module.exports = class {
 
                 if(user.level < curLvl) {
                   let rl = [];
-                  reply(`<:rolleyes:597417024704086016> You just advanced to level ${curLvl}! [${user.level} → ${curLvl}]`).catch(O_o=>{});
+                  reply(`<:wiaaa:642847940238639155> You just advanced to level ${curLvl}! [${user.level} → ${curLvl}]`).catch(O_o=>{});
                   user.level = curLvl;
                 }
 
@@ -168,9 +176,9 @@ module.exports = class {
 
     const level = message.channel.type === "text" ? await this.client.permlevel(message) : getDmLvl(message, this.client);
 
-    if (message.content.indexOf("+") !== 0) return;
+    if (message.content.indexOf("?") !== 0) return;
 
-    const args = message.content.slice("+".length).trim().split(/ +/g);
+    const args = message.content.slice("?".length).trim().split(/ +/g);
     const command = args.shift().toLowerCase();
     if (message.guild && !message.member) await message.guild.fetchMember(message.author);
     const cmd = this.client.commands.get(command) || this.client.commands.get(this.client.aliases.get(command));

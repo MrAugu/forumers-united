@@ -6,33 +6,10 @@ module.exports = class {
   }
 
   async run(reaction, user) {
-    if (reaction.message.id === "610180716621201408") {
-      const member = reaction.message.guild.members.get(user.id);
-      if (reaction.emoji.name === "🌽") {
-        member.roles.add("608713051000143890");
-        member.user.send("Added farmer role.");
-      }
-      if (reaction.emoji.name === "🔨") {
-        member.roles.add("608712841301590065");
-        member.user.send("Added builder role.");
-      }
-      if (reaction.emoji.name === "🏥") {
-        member.roles.add("608712892673425409");
-        member.user.send("Added surgeon role.");
-      }
-      if (reaction.emoji.name === "💎") {
-        member.roles.add("532185124649828362");
-        member.user.send("Added BFG role.");
-      }
-      if (reaction.emoji.name === "🗞") {
-        member.roles.add("610202262827958272");
-        member.user.send("Added Growtopia Updates role.");
-      }
-    }
     const message = reaction.message;
     if (reaction.emoji.name !== "⭐") return;
     if (message.author.id === user.id) return message.channel.send(`**${message.author}**, you cannot star your own messages.`);
-    const starboardChannel = "598903393360019466";
+    const starboardChannel = "632960715359125535";
     const starChannel = message.guild.channels.find(channel => channel.id === starboardChannel)
     if (!starChannel) return message.channel.send(`It appears that you do not have a \`${starboardChannel}\` channel.`);
     const fetchedMessages = await starChannel.messages.fetch({ limit: 100 });

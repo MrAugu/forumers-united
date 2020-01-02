@@ -5,6 +5,14 @@ const { promisify } = require("util");
 const readdir = promisify(require("fs").readdir);
 const klaw = require("klaw");
 const path = require("path");
+const dbUrl = require("./config.js").dbUrl;
+const mongoose = require("mongoose");
+
+mongoose.connect(dbUrl, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});
+
 
 class Bot extends Client {
   constructor (options) {
@@ -28,6 +36,9 @@ class Bot extends Client {
         return false;
       }
     };
+
+    this.queue = new Map();
+    this.playlists = new Collection();
 
     this.awaitSurgeryReply = async (msg, question, limit = 60000, id, ctx = "") => {
       const filter = m => m.author.id === id;

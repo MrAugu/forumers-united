@@ -29,7 +29,7 @@ class Rank extends Command {
         if(target.bot) return reply(`Seems like **${target.username}** is a bot.`);
 
         Canvas.registerFont(resolve(join(__dirname, "./Whitney-Bold.ttf")), "WB");
-        console.log(target);
+
         Levels.findOne({
             userID: target.id,
             serverID: message.guild.id
@@ -39,7 +39,7 @@ class Rank extends Command {
             const image = await fsn.readFile("./grow_banner.jpg");
 
             const imageUrlRegex = /\?size=2048$/g;
-            console.log(target);
+
             const result = await fetch(target.displayAvatarURL({ size: 512, format: "png" }));
             if (!result.ok) throw new Error("Failed to get the avatar..")
             const avatar = await result.buffer();

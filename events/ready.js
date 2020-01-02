@@ -7,8 +7,6 @@ module.exports = class {
   }
 
   async run () {
-    this.client.channels.get("610180045864173580").messages.fetch({ limit: 10 });
-
     this.client.appInfo = await this.client.fetchApplication();
     setInterval( async () => {
       this.client.appInfo = await this.client.fetchApplication();
@@ -23,7 +21,7 @@ module.exports = class {
     var pick = 0;
     setInterval(() => {
       statusArray[pick](this.client);
-    }, 20000);
+    }, 60000);
 
     let users = 0;
     this.client.guilds.map(g => users += g.memberCount);
