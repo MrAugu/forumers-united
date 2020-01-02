@@ -160,7 +160,7 @@ class Play extends Command {
         video = await youtube.getVideo(url);
       } catch (error) {
         const videos = await youtube.searchVideos(args.join(" "), 1);
-        if (!videos.length) return message.channel.send("I could not obtain any search results.").then(message => {message.delete(20000);});
+        if (!videos.length) return message.channel.send("I could not obtain any search results.");
         video = await youtube.getVideoByID(videos[0].id);   
       }
       return handleVideo(video, message, voiceChannel);

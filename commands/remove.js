@@ -20,7 +20,7 @@ class Remove extends Command {
 
   async run (message, args, level, reply) { // eslint-disable-line no-unused-vars
     const queue = this.client.queue.get(message.guild.id);
-    const voiceChannel = message.member.voiceChannel;
+    const voiceChannel = this.client.channels.get(message.member.voice.channelID);
     if (!voiceChannel) return reply("You must be in a voice channel to use this command.");
     if (!queue) return reply("There are no songs in the queue.");
     if (isNaN(args[0])) return reply("Please enter the song's **number**.");
@@ -28,7 +28,7 @@ class Remove extends Command {
 
     const loading = await reply("<a:loading:458366490702250000> Fetching...");
 
-    var index = args[0] - 1;
+    var index = args[0] - 2;
     loading.edit(`🆗 Removed song **${queue.songs[index].title}** by **${queue.songs[index].channel}** from the queue.`);
     queue.songs.splice(index, 1);
   }

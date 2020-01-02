@@ -19,8 +19,9 @@ class Queue extends Command {
   }
 
   async run (message, args, level, reply) { // eslint-disable-line no-unused-vars
-    var index = 0;
+    var index = 1;
     const queue = this.client.queue.get(message.guild.id);
+    if (!queue) return reply("Nothing is playing.");
     var nu = queue.songs;
     nu = nu.shift();
 
