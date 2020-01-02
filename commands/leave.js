@@ -19,7 +19,7 @@ class Leave extends Command {
   }
 
   async run (message, args, level, reply) { // eslint-disable-line no-unused-vars
-    const voiceChannel = message.member.voiceChannel;
+    const voiceChannel = this.client.channels.get(message.member.voice.channelID);
 
     if (!message.member.voiceChannel) return message.channel.send("You must be in a voice channel to use this command.");
     await voiceChannel.leave();

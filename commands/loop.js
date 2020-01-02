@@ -19,7 +19,7 @@ class Loop extends Command {
   }
 
   async run (message, args, level, reply) { // eslint-disable-line no-unused-vars
-    const voiceChannel = message.member.voiceChannel;
+    const voiceChannel = this.client.channels.get(message.member.voice.channelID);
     const queue = this.client.queue.get(message.guild.id);
 
     if (!voiceChannel) return reply("You must be in a voice channel to use this command.");

@@ -29,7 +29,7 @@ class Skip extends Command {
     queue.connection.dispatcher.end("Skip Command Used");
     queue.playing = true;
     queue.connection.dispatcher.resume();
-    reply(":tack_next: Skipped the current song.");
+    reply("⏭️ Skipped the current song.");
   }
 }
 

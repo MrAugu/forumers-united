@@ -26,8 +26,8 @@ class Np extends Command {
     const songdurm = String(song.durationm).padStart(2, "0"); //Minutes
     const songdurs = String(song.durations).padStart(2, "0"); //Seconds
 
-    const u = await this.client.fetchUser(song.authorId);
-    const npEmbed = new Discord.RichEmbed()
+    const u = await this.client.users.fetch(song.authorId);
+    const npEmbed = new Discord.MessageEmbed()
       .setTitle(song.title, song.url)
       .setDescription(`[${song.channel}](${song.channelurl})`)
       .addField("Duration:", `${songdurm}:${songdurs}`)
