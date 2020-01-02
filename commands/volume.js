@@ -26,7 +26,8 @@ class Volume extends Command {
       if (!queue) return reply("You must play something to use this command.");
 
       if (isNaN(parseInt(args[0]))) return reply("Volume must be a number.");
-
+      if (parseInt(args[0]) < 4) args[0] = "4";
+    
       queue.volume = args[0];
       queue.connection.dispatcher.setVolumeLogarithmic(args[0] / 4);
       reply(`🆗 Tensity set to: **${args[0]}**.`);
