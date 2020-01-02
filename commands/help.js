@@ -68,6 +68,7 @@ class Help extends Command {
       cmds = cmds.map(cmd => `**${cmd.help.name.toProperCase()} - \`+${cmd.help.name}\`**\n${cmd.help.description}`)
 
       const emb = new Discord.MessageEmbed()
+        .setTitle("Music [BETA]")
         .setAuthor(message.author.tag, message.author.displayAvatarURL())
         .setColor("#2A7AAF")
         .setDescription(`${cmds.join("\n")}`);
