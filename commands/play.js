@@ -38,6 +38,7 @@ class Play extends Command {
         dispatcher = serverQueue.connection.play(ytdl(song.url));
         dispatcher.setVolumeLogarithmic(1);
       } catch (e) {
+        console.log(e);
         return reply("Video not available.");
       }
     

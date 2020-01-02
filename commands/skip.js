@@ -20,7 +20,7 @@ class Skip extends Command {
 
   async run (message, args, level, reply) { // eslint-disable-line no-unused-vars
     const queue = this.client.queue.get(message.guild.id);
-    const voiceChannel = message.member.voiceChannel;
+    const voiceChannel = this.client.channels.get(message.member.voice.channelID);
 		
     if (!voiceChannel) return message.reply("You must be in a voice channel to use this command.");
     if (!queue) return reply("There is nothing playing to resume.");
