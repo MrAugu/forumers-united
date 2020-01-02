@@ -21,10 +21,10 @@ class Hell extends Command {
   async run (message, args, level, reply) { // eslint-disable-line no-unused-vars
     const queue = this.client.queue.get(message.guild.id);
         
-    if (!message.member.voiceChannel) return reply("You must be in a voice channel to use this command.");
+    if (!message.member.voice.channel) return reply("You must be in a voice channel to use this command.");
     if (!queue) return reply("You must play something to use this command.");
 
-    const userCount = message.member.voiceChannel.members.size;
+    const userCount = this.client.channels.get(message.member.voice.channel).members.size;
 
     if (userCount >= 4 && level < 2) {
       return reply("You are missing Moderator permissions. This command bypases permission if in voice channel are less than 4 peoples.");

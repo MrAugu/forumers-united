@@ -32,9 +32,15 @@ class Play extends Command {
         this.client.queue.delete(guild.id);
         return;
       }
+      var dispatcher;
+      
+      try {
+        dispatcher = serverQueue.connection.play(ytdl(song.url));
+        dispatcher.setVolumeLogarithmic(1);
+      } catch (e) {
+        return reply("Video not available.");
+      }
     
-      const dispatcher = serverQueue.connection.playStream(ytdl(song.url));
-
       dispatcher.on("data", console.log);
       dispatcher.on("end", () => {
         if (!serverQueue.queueLoop) {
@@ -63,7 +69,7 @@ class Play extends Command {
       const songdurm = String(song.durationm).padStart(2, "0"); //Minutes
       const songdurs = String(song.durations).padStart(2, "0"); //Seconds
 
-      const embed = new Discord.RichEmbed() // create a message embed with all of the information
+      const embed = new Discord.MessageEmbed() // create a message embed with all of the information
         .setTitle(song.channel)
         .setURL(song.channelurl)
         .setThumbnail(song.thumbnail)
@@ -136,7 +142,7 @@ class Play extends Command {
     // const searchString = args.slice(0).join(" ");
     const url = args[0] ? args[0].replace(/<(.+)>/g, "$1") : "";
     // const serverQueue = this.client.queue.get(message.guild.id);
-    const voiceChannel = message.member.voiceChannel;
+    const voiceChannel = this.client.channels.get(message.member.voice.channelID);
     if (!voiceChannel) return message.channel.send("You must be in a voice channel to play music.");
 
     if (url.match(/^https?:\/\/(www.youtube.com|youtube.com)\/playlist(.*)$/)) {
