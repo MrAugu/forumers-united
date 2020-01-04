@@ -34,8 +34,12 @@ class Xp extends Command {
             totalXp = totalXp+ res[i].xp;
           }
        
-    
-        m.edit(`Server Wide Amount of XP is **${totalXp.toLocaleString()}**.`);
+    	const embed = new Discord.MessageEmbed()
+	  .setTitle("Server Wide XP")
+	  .setDescription(`At this moment, in the server, there is a total of **${totalXp.toLocaleString()}** XP.`)
+	  .setColor("YELLOW")
+	  .setTimestamp();
+	reply(embed);
     });
   }
 }
