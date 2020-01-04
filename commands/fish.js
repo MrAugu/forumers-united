@@ -12,7 +12,7 @@ class Fish extends Command {
       description: "Fishing.",
       category: "Economy",
       usage: "",
-      enabled: true,
+      enabled: false,
       guildOnly: true,
       aliases: [],
       cooldown: 20,
