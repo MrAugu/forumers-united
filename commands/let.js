@@ -14,7 +14,7 @@ class Let extends Command {
       aliases: [],
       permLevel: "User",
       cooldown: 5,
-	  rank: "Administrator",
+      rank: "Administrator",
       args: true
     });
   }
@@ -37,7 +37,6 @@ class Let extends Command {
 
     user.roles.add("532182862187986954", "Acces granted.").catch(e => {});
     user.setNickname(usr.username).catch(e => {});
-    user.roles.remove("532362244059693076", "Acces granted.").catch(e => {});
     
     user.user.send(`Your acces has been granted by **${message.author.tag}**.`).catch(e => {});
     reply("Sucessfully granted the acces");
