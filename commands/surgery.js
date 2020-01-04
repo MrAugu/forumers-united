@@ -27,8 +27,8 @@ class Surgery extends Command {
     if (victimDiscord.id === message.author.id) return reply("I can't say that you haven't tried but i do not think you can manage to perform a surgery on yourself.");
     const consentMsg = await reply(`${victimDiscord}, do you accept to be performed surgery on by ${message.author}?`);
 
-    await consentMsg.react("610755309627244554");
-    await consentMsg.react("610755499985600543");
+    await consentMsg.react("✅");
+    await consentMsg.react("❌");
 
     const collected = await consentMsg.awaitReactions((reaction, user) => user.id === victimDiscord.id, {max: 1, time: 30000, errors: ["time"] }).catch(e => {});
     if (!collected) return reply("Timed out.");
@@ -36,7 +36,7 @@ class Surgery extends Command {
 
     await consentMsg.delete();
 
-    if (res !== "greenTick") return reply("Consent has not ben given.");
+    if (res !== "✅") return reply("Consent has not ben given.");
     Money.findOne({
       userID: victimDiscord.user.id,
       serverID: message.guild.id
