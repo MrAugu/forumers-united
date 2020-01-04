@@ -1,6 +1,6 @@
 const Discord = require ("discord.js"); // eslint-disable-line no-unused-vars
 const Command = require("../base/Command.js");
-var isHexColor = require("is-hexcolor");
+const isHexColor = require("is-hexcolor");
 
 class Hex extends Command {
   constructor (client) {
@@ -26,11 +26,11 @@ class Hex extends Command {
   
     if (!isHexColor(args[0])) return reply("Invalid hexadecimal color.");
     
-    colorRole.setColor(args[0]);
+    await colorRole.setColor(args[0]);
     
     const embed = new Discord.MessageEmbed()
       .setAuthor(message.author.tag, message.author.displayAvatarURL())
-      .setDescripion(`Set your color role to **${args[0]}**.\n<- Sample Color`)
+      .setDescription(`Set your color role to **${args[0]}**.\n<- Sample Color`)
       .setColor(args[0]);
     reply(embed);
   }
