@@ -57,12 +57,12 @@ class Verify extends Command {
 
     const embed = new Discord.MessageEmbed()
       .setAuthor(message.author.tag, message.author.displayAvatarURL())
-      .setDescription(`${message.author.tag} has requested to enter the server.\n\nCase: ${obj.case}\nForum Name: ${obj.username}\n\nIf you want to let him in, type \`+let ${obj.case}\` or \`+deny ${obj.case} <reason>\` to deny enterning, this will also DM user with the reason of denial and it will also be kicked out.`)
-      .setColor("BLUE")
+      .setDescription(`**${message.author.tag} (ID: ${message.author.id})**has requested to enter the server.\n\nCase: ${obj.case}\nForum Name: ${obj.username}\n\nIf you want to let him in, type \`?let ${obj.case}\` or \`?deny ${obj.case} <reason>\` to deny enterning, this will also DM user with the reason of denial and it will also be banned out.`)
+      .setColor("YELLOW")
       .setTimestamp();
-    this.client.channels.get("597820479868239873").send(embed);
+    this.client.channels.get("646727203652108298").send(embed);
 
-    reply("Your submission has been sent. It will be reviewed by an administrator in a couple of minutes.");
+    reply("Good! Your submission has been sent. It will be reviewed by an administrator in a couple of minutes.");
   }
 }
 
