@@ -43,6 +43,7 @@ module.exports = class {
                 .setColor("BLUE")
                 .setFooter("Powered by Yandex-Translate")
                 .setTimestamp();
+	      if (res1.text[0].toLowerCase().includes("plant")) return message.channel.send("no way dude");
               const mj = await message.channel.send(translateEmbed);
 
               setTimeout(() => {
