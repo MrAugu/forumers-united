@@ -2,19 +2,19 @@ const Discord = require ("discord.js"); // eslint-disable-line no-unused-vars
 const Command = require("../base/Command.js");
 const fs = require("fs");
 
-class Deny extends Command {
+class Decline extends Command {
   constructor (client) {
     super(client, {
-      name: "deny",
-      description: "Deny someone's acces into server.",
+      name: "decline",
+      description: "Decline someone's acces into server.",
       category: "Tools",
       usage: "",
       enabled: true,
       guildOnly: true,
-      aliases: [],
+      aliases: ["deny"],
       permLevel: "User",
       cooldown: 5,
-	  rank: "Administrator",
+      rank: "Administrator",
       args: true
     });
   }
@@ -39,10 +39,10 @@ class Deny extends Command {
     if (!user) return reply("User quitted.");
 
     user.user.send(`Your acces has been denied. Reason: **${reason}**`).catch(e => {});
-    user.kick().catch(e => {});
+    user.ban().catch(e => {});
 
-    reply(`Acces has been declined for ${user.user.tag}.`);
-  }
+    reply(`Acces has been declined for ${user.user.tag}**.`);
+  }**
 }
 
-module.exports = Deny;
+module.exports = Decline;
