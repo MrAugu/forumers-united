@@ -42,7 +42,7 @@ class Decline extends Command {
     user.ban().catch(e => {});
 
     reply(`Acces has been declined for ${user.user.tag}**.`);
-  }**
+  }
 }
 
 module.exports = Decline;
