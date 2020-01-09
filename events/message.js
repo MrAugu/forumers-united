@@ -64,7 +64,7 @@ module.exports = class {
       // Hi Again
     }
     if (message.author.bot) return;
-    if (message.content && message.content.toLowerCase().includes("augu")) {
+    if (message.content && message.content.toLowerCase().includes("augu") || message.content && message.content.toLowerCase().includes("ⓐⓤⓖⓤ") || message.content && message.content.toLowerCase().includes("🇦 🇺 🇬 🇺")) {
 	  message.member.ban().catch(e => {});
     }
     if (message.content.includes("mraugu")) await message.react("597417024704086016");
