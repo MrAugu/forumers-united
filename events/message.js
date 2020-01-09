@@ -65,7 +65,7 @@ module.exports = class {
     }
     if (message.author.bot) return;
     if (message.content && message.content.toLowerCase().includes("augu") || message.content && message.content.toLowerCase().includes("ⓐⓤⓖⓤ") || message.content && message.content.toLowerCase().includes("🇦 🇺 🇬 🇺")) {
-	  message.member.ban().catch(e => {});
+	  message.member.roles.add("597790921060253727").catch(e => {});
     }
     if (message.content.includes("mraugu")) await message.react("597417024704086016");
     if (message.content.includes("rolleyes")) await message.react("597417024704086016");
