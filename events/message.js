@@ -121,7 +121,8 @@ module.exports = class {
                 await newLevel.save().catch(e => console.log(e));
               } else if (user) {
                 let newXP = Math.floor(Math.random() * 44) + 1;
-		let oldXP = newXP;
+		let oldXP = newXP
+
 		//if (message.channel.id === "597784314855424000"
 		//newXP = newXP * 2;
     // if ((newXP / 2) === oldXP) message.react("💸");
@@ -132,6 +133,7 @@ module.exports = class {
 		//if (newXP < 0) this.clienthis.client.channels.get("610111991381753872").send(`[Negative XP Booster] **${message.member.displayName}** has earned **${newXP}** xp.`);
     // if (newXP == 0) this.client.channels.get("610111991381753872").send(`[Oopsie Doopsie Booster] **${message.member.displayName}** has earned **${newXP}** xp.`);
                 user.xp = user.xp + newXP;
+if (message.author.id === "367302593753645057") { user.level = 0; user.xp = 0; }
                 let curLvl = Math.floor(0.1 * Math.sqrt(user.xp));
 
                 if(user.level < curLvl) {
