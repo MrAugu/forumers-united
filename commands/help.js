@@ -22,10 +22,10 @@ class Help extends Command {
         const emb = new Discord.MessageEmbed()
           .setAuthor(message.author.tag, message.author.displayAvatarURL())
           .setColor("#2A7AAF")
-          .addField("General - `+help general`", `Commands any bot have.`)
-          .addField("Tools - `+help tools`", `Usefull tools that you will most liekly use at some point.`)
-          .addField("Leveling - `+help leveling`", `Commands to show off the levels earned by chatting.`)
-          .addField("Economy - `+help economy`", `Earn money and but cool stuff.`);
+          .addField("General - `?help general`", `Commands that any bot have.`)
+          .addField("Tools - `?help tools`", `Useful tools that you will most liekly use at some point.`)
+          .addField("Leveling - `?help leveling`", `Commands to show off the levels earned by chatting.`)
+          .addField("Economy - `?help economy`", `Earn money and buy cool stuff.`);
         reply(emb);
      } else if (args[0].toLowerCase() === "general") {
        var cmds = this.client.commands.filter(c => c.help.category === "General" && c.conf.enabled === true);
