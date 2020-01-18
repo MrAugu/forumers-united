@@ -36,7 +36,7 @@ class Surgery extends Command {
 
     await consentMsg.delete();
 
-    if (res !== "✅") return reply("Consent has not ben given.");
+    if (res !== "✅") return reply("Consent has not been given.");
     Money.findOne({
       userID: victimDiscord.user.id,
       serverID: message.guild.id
@@ -90,7 +90,7 @@ class Surgery extends Command {
           if (victim.shattered > 0) trainE += "\n- You can use `pins`to fix shattered bones.";
           if (victim.broken > 0) trainE += "\n- You can use `splint` to fix the broken bones.";
           if (victim.sleep < 3 && victim.incisions > 0) trainE += "\n- Don't let the patient wake up with open incisions. You can use `anesthetic` to prolong their sleep, but too much will kill them.";
-          if (availableTools.includes("fixit")) trainE += "\n- You can use `fixit` to fix patien't problem. After you do so, you can start to stitch their incisions.";
+          if (availableTools.includes("fixit")) trainE += "\n- You can use `fixit` to fix patient problem. After you do so, you can start to stitch their incisions.";
           if (victim.sleep > 0 && !this.fixed) trainE += "\n- You can use `scalpel` until you discover the problem and `fixit` button appears.";
           if (victim.fixed) trainE += "\n- Use `stitches` to stitch your patient's incisions.";
           if (victim.dirt === 10) {

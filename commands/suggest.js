@@ -23,7 +23,7 @@ class Suggest extends Command {
     const m = await this.client.channels.get("597685582298218534").send(`**Vote on suggestion:**\`\`\`${suggestion}\`\`\`\nSuggested by ${message.author}.`);
     await m.react("✅");
     await m.react("❎");
-    reply("You suggestion has been sent and awaits voting.");
+    reply("Your suggestion has been sent and awaits voting.");
   
   }
 }
