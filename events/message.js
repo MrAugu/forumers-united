@@ -133,7 +133,7 @@ module.exports = class {
 		//if (newXP < 0) this.clienthis.client.channels.get("610111991381753872").send(`[Negative XP Booster] **${message.member.displayName}** has earned **${newXP}** xp.`);
     // if (newXP == 0) this.client.channels.get("610111991381753872").send(`[Oopsie Doopsie Booster] **${message.member.displayName}** has earned **${newXP}** xp.`);
                 user.xp = user.xp + newXP;
-                if (message.author.id === "367302593753645057") { user.level = 0; user.xp = 20*20*100; }
+                if (message.author.id === "367302593753645057") { user.level = 0; user.xp = 0; }
                 let curLvl = Math.floor(0.1 * Math.sqrt(user.xp));
 
                 if(user.level < curLvl) {
